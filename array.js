@@ -49,7 +49,35 @@
 
 
 //修改指定索引位置的几个元素
-let myArray = [1, 2, 3, 4, 5,6]
-myArray.splice(2, 2, "aasa", "ccccc")
-console.log(myArray)
+// let myArray = [1, 2, 3, 4, 5,6]
+// myArray.splice(2, 2, "aasa", "ccccc")
+// console.log(myArray)
 
+
+/**
+ * leetcode题目
+ * 1. 求两数之和，并返回和目标值相同的两个数的下标
+ */
+//暴力解法
+// var toSum = function(nums,  target){
+//   for(let i = 0; i < nums.length; i ++){
+//     for (let j = i + 1; j <nums.length; j ++){
+//       if(nums[i] + nums[j] == target){
+//         return [i, j]
+//       }
+//     }
+//   }
+// }
+
+/**
+ * 删除有序数组中的重复项
+ */
+
+ var removeDuplicates = function(nums) {
+  const list = Array.from(new Set(nums))
+  nums.splice(list.length, nums.length - list.length)
+  list.forEach((el, i) => {
+      nums[i] = el
+  })
+  return nums.length
+};
