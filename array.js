@@ -73,11 +73,31 @@
  * 删除有序数组中的重复项
  */
 
- var removeDuplicates = function(nums) {
-  const list = Array.from(new Set(nums))
-  nums.splice(list.length, nums.length - list.length)
-  list.forEach((el, i) => {
-      nums[i] = el
-  })
-  return nums.length
-};
+//  var removeDuplicates = function(nums) {
+//   const list = Array.from(new Set(nums))
+//   nums.splice(list.length, nums.length - list.length)
+//   list.forEach((el, i) => {
+//       nums[i] = el
+//   })
+//   return nums.length
+// };
+
+
+/**
+ *!  Array构造函数有两个ES6新增的静态方法：
+ 1. from()
+    from() 用于将类数组结构转换为数组实例
+    Array.from(item, mapFn, thisArg):
+        item是一个类数组的对象，可以是任何可以迭代的结构.
+        如果指定了该参数，新数组中的每个元素会执行该回调函数
+        可选参数，执行回调函数 mapFn 时 this 对象
+    可以对现有的数组进行浅复制
+  2. of()
+    Array.of() 方法创建一个具有可变数量参数的新数组实例，而不考虑参数的数量或类型
+*/
+// nums = [1,2,3,4]
+// let m = Array.from(nums)
+// console.log(m)
+// console.log(m === nums) //false 浅复制
+
+//! Array.from(obj, mapFn, thisArg) ===> Array.from(obj).map(mapFn, thisArg)
