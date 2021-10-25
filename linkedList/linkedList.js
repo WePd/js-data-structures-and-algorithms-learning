@@ -1,11 +1,20 @@
 const { node } = require("webpack");
 
+//主要用来对比元素是不是相等
+function Equals(a, b) {
+  return a === b;
+}
+
+
+//c创建节点类
 class Node {
   constructor(element, next) {
     this.element = element;
     this.next = next;
   }
 }
+
+//创建链表类
 class LinkedList {
   constructor() {
     this.head = undefined;
@@ -77,7 +86,7 @@ class LinkedList {
     return "这是一个无效的索引"
   }
   //任意位置插入元素
-  insert(index) {
+  insert(element, index) {
     //首先也是先判断有没有越界
     if (index >= 0 && index <= this.count) {
       //创建一个插入元素的节点
@@ -85,22 +94,93 @@ class LinkedList {
       //插入到第一个位置
       if (index === 0) {
         node.next = this.head
-        this.headt = node
+        this.head = node
+      } else {
+        //获取要插入索引的前一个节点
+        let first = this.getElementAt(index - 1);
+        node.next = first.next;
+        first.next = node
       }
-      //获取要插入索引的前一个节点
-      let first = this.getElementAt(index - 1);
-
+      this.count++;
+      // return true
     }
-    return '这是一个无效的索引'
+    return false
+  }
+  //indexOf; 返回一个元素的位置
+  //若是在链表中找到了这个元素就返回元素的位置，否则就返回-1
+  indexOf(element) {
+    let listHead = this.head
+    //对链表遍历
+    for (let i = 0; i < this.count && this.head != null; i++) {
+      //利用自己封装的函数比较元素是否相等
+      if (Equals(element, listHead.element)) {
+        //如果相对则返回索引值
+        return i
+      }
+      //每次比较玩之后都要将比较元素赋为下一个节点的位置
+      listHead = listHead.next
+    }
+    return -1
+  }
+  //remove(element)移除元素
+  remove(element) {
+    const index = this.indexOf(element)
+    return this.removeAt(index)
+  }
+  //获取链表的长度
+  size() {
+    return this.count
+  }
+  //isEmpty()链表是否为空
+  isEmpty() {
+    return this.count === 0
+  }
+  //获取链表的头部
+  getHead() {
+    return this.head
+  }
+  //toString方法
+  toString() {
+    //首先链表是否为空
+    if (this.head == null) {
+      return ''
+    }
+    //若不为空，则先将链表的表头转化为字符串
+    let objString = `${this.head.element}`
+    let objNext = this.head.next;
+    for (let i = 0; i < this.count && objNext != null; i++) {
+      console.log(objNext.element);
+      objString = `${objString}, ${objNext.element}`
+      objNext = objNext.next
+    }
+    return objString
   }
 }
 
-let list = new LinkedList()
+let list = new LinkedList
 list.push(2)
 list.push(3)
 list.push(9)
 list.push(9)
 list.push(9)
-console.log(list);
-console.log(list.removeAt(0))
-console.log(list)
+// console.log(list);
+// console.log(list.removeAt(0))
+list.insert(1, 0)
+// console.dir(list);
+// console.log(list.getElementAt(0));
+list.insert(999, 0)
+// console.log(list.insert(999, -789)) //false
+// console.log(list);
+// console.log(list.indexOf(999))// 0
+// console.log(list.indexOf(99))// -1
+// list.remove(999)
+// console.log(list);
+// console.log(list.getElementAt(0));
+console.log(list.toString()); //  999, 1, 2, 3, 9, 9, 9
+
+
+console.log('--------------------------------------------------------------------');
+// 至此。简单链表完成
+
+
+
