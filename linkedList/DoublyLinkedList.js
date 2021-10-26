@@ -175,5 +175,5 @@ dblList.push(5)
 dblList.removeAt(2)
 // console.log(dblList);
 console.log(dblList.toString());// 1 2 4 5
-console.log('---------------------------------------------------');
+console.log('-------------------------------------------------');
 //至此双向链表完成 2021-10-26
