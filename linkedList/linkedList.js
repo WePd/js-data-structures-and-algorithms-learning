@@ -71,7 +71,7 @@ class LinkedList {
     }
     return '这是一个无效的索引'
   }
-  //getElement获取元素位置索引
+  //getElement获取索引位置元素
   getElementAt(index) {
     //同样的先判断有没有越界
     if (index >= 0 && index <= this.count) {
