@@ -28,7 +28,7 @@ function dafaultToString(item) {
 }
 
 //定义字典类
-class Dictionary {
+export default class Dictionary {
   constructor() {
     //会将元素存储在一个Object实例中而不是数组。
     this.table = {};
@@ -75,10 +75,8 @@ class Dictionary {
   }
   //根据键查看在字典中的值
   get(key) {
-    if (this.hasKey(key)) {
-      return this.table[dafaultToString(key)];
-    }
-    return false
+    const valuePair = this.table[dafaultToString(key)]
+    return valuePair == null ? undefined : valuePair.value
   }
   //valuePairs  会以数组形式返回字典中的所有 valuePair 对象
   valuePairs() {
@@ -120,20 +118,20 @@ class Dictionary {
 }
 
 
-let dic = new Dictionary()
-dic.set('wohqq', 'tis')
-dic.set('hahahah1', 2)
-dic.set('hahah2', 2)
-dic.set('hahah3', 3)
-// console.log(dic.hasKey('wohqq'));
-dic.remove('hahah3')
-// console.log(dic);
-// console.log(dic.get('hahah2')); //ValuePair { key: 'hahah2', value: 2 }
-// console.log(dic.valuePairs());
-// console.log(dic.keys());
-dic.forEach((k, v) => {
-  console.log('forEach:', `key: ${k}, value: ${v}`);
-})
+// let dic = new Dictionary()
+// dic.set('wohqq', 'tis')
+// dic.set('hahahah1', 2)
+// dic.set('hahah2', 2)
+// dic.set('hahah3', 3)
+// // console.log(dic.hasKey('wohqq'));
+// dic.remove('hahah3')
+// // console.log(dic);
+// // console.log(dic.get('hahah2')); //ValuePair { key: 'hahah2', value: 2 }
+// // console.log(dic.valuePairs());
+// // console.log(dic.keys());
+// dic.forEach((k, v) => {
+//   console.log('forEach:', `key: ${k}, value: ${v}`);
+// })
 
-console.log('------------------------------------------------------------------');
+// console.log('------------------------------------------------------------------');
 //至此，字典完成2021-11-1
