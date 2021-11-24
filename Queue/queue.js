@@ -1,17 +1,17 @@
-class Queue{
-  constructor(){
+export default class Queue {
+  constructor() {
     this.count = 0;
     this.lowestCount = 0;//删除元素的数量
     this.items = {};
   }
   //添加新元素
-  enQuene(element){
+  enQuene(element) {
     //先添加元素然后再将count加1
     this.items[this.count] = element;
     this.count++;
   }
   //从队列删除元素 最先添加的也是先被移除的
-  deQueue(){
+  deQueue() {
     if (this.isEmpty()) return undefined;
     //暂存要删除的元素
     const result = this.items[this.lowestCount];
@@ -21,31 +21,31 @@ class Queue{
     return result;
   }
   //查看队列头元素
-  peek(){
-    if(this.isEmpty()) return undefined;
-    return  this.items[this.lowestCount];
+  peek() {
+    if (this.isEmpty()) return undefined;
+    return this.items[this.lowestCount];
   }
   //检查队列是否为空
-  isEmpty(){
+  isEmpty() {
     return this.count - this.lowestCount === 0;
   }
   //返回队列长度
-  size(){
+  size() {
     return this.count - this.lowestCount;
   }
   //清空队列
-  clear(){
+  clear() {
     this.count = 0;
     this.items = {};
     this.lowestCount = 0;
   }
   //toString
-  toString(){
-    if(this.isEmpty()) return '';
+  toString() {
+    if (this.isEmpty()) return '';
     //先选定队首元素
     let objString = `${this.items[this.lowestCount]}`;
     //接着迭代出之后的元素
-    for(let i = this.lowestCount + 1; i < this.count; i++){
+    for (let i = this.lowestCount + 1; i < this.count; i++) {
       objString = `${objString},${this.items[i]}`;
     }
     return objString;
